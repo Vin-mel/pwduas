@@ -1,5 +1,6 @@
     <?php
     include "header.php";
+    include "koneksi.php"
     ?>
 
     <section class="hero" id="home">
@@ -10,33 +11,32 @@
     </section>
 
     <!-- Renungan-->
-    <section id="renungan" class="Renungan">
-        <div class="renungan-container">
-            <div class="renungan-card">
-                <!-- fotorenungan-->
-                <div class="renungan-image">
-                    <img src="img/foto-renungan.jpg" alt="Renugan Hari Ini">
-                </div>
-                <!--Konten renungan-->
-                <div class="renungan-info">
-                    <span class="tag">Renungan Harian</span>
-                    <h3>Berakar Untuk Bertumbuh</h3>
-                    <blockquote class="ayat">
-                        "Ia akan seperti pohon yang ditanam di tepi air, yang merambatkan akar-akarnya ke tepi batang
-                        air"
-                        <br><strong>(Yeremia 17:8)</strong>
-                    </blockquote>
-                    <p> Hidup seringkali penuh badai, tapi pohon yang akarnya dalam takkan goyah. Begitu juga iman kita
-                    </p>
-
-                    <!-- tombol ke web khusus-->
-                    <a href="https://warungsatekamu.org/renungan/" target="_blank" class="btn-renungan">
-                        <span>Baca Selengkapnya</span>
-                    </a>
-                </div>
+   <section id="renungan" class="Renungan">
+    <div class="renungan-container">
+        <?php if ($data_renungan): ?>
+        <div class="renungan-card">
+            <div class="renungan-image">
+                <img src="img/<?php echo $data_renungan['gambar_renungan']; ?>" alt="Renungan Hari Ini">
+            </div>
+            <div class="renungan-info">
+                <span class="tag">Renungan Harian</span>
+                <blockquote class="ayat">
+                    "<?php echo $data_renungan['isi_ayat']; ?>"
+                    <br><strong>(<?php echo $data_renungan['referensi_ayat']; ?>)</strong>
+                </blockquote>
+                <a href="<?php echo $data_renungan['link_sumber']; ?>" target="_blank" class="btn-renungan">
+                    <span>Baca Selengkapnya</span>
+                </a>
             </div>
         </div>
-    </section>
+        <?php else: ?>
+            <div class="renungan-card" style="text-align: center; padding: 40px; color: #000;">
+                <h3>Belum Ada Renungan Hari Ini</h3>
+                <p>Silakan hubungi admin untuk memperbarui konten renungan harian.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
 
     <!--Sejarah singkat-->
     <section id="about" class="sejarah">
@@ -290,25 +290,7 @@
         </div>
     </section>
 
-    <!--Permohonan doa-->
-    <section id="permohonan">
-        <div class="doa-container">
-            <div class="doa-header">
-                <h2> Permohonan Doa</h2>
-                <p>Tuliskan pergumulanmu, kami akan turut mendoakan</p>
-            </div>
-            <form id="doaForm">
-                <div class="input-group">
-                    <label for="fname">Nama Lengkap</label>
-                    <input type="text" id="fname" name="fname" placeholder="Masukkan Nama Kamu...">
-                </div>
-                <div class="input-group">
-                    <label for="doa">Isi Doa/ PergumulanMu</label>
-                    <textarea id="doa" name="doa" rows="4" placeholder="Apa yang ingin kamu daokan?"></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Kirim Permohonan</button>
-            </form>
-    </section>
+   <?php include "doa_frm.php"; ?>
 <?php
 include "footer.php";
 ?>
