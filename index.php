@@ -2,12 +2,11 @@
     include "header.php";
     include "koneksi.php";
 
-
-    $query_renungan = mysqli_query($conn, "SELECT * FROM tb_renungan ORDER BY tanggal_publish DESC LIMIT 1");
+     $query_renungan = mysqli_query($conn, "SELECT * FROM tb_renungan ORDER BY tanggal_publish DESC LIMIT 1");
     $tb_renungan = mysqli_fetch_assoc($query_renungan);
-    ?>
+  ?>
 
-    <section class="hero" id="home">
+     <section class="hero" id="home">
         <main class="content">
             <h1> Welcome Home</h1>
             <p>Tempat Bagi Yang Berbeban Berat</p>
@@ -33,7 +32,6 @@
                 </a>
             </div>
         </div>
-        
         <?php else: ?>
             <div class="renungan-card" style="text-align: center; padding: 40px; color: #000;">
                 <h3>Belum Ada Renungan Hari Ini</h3>
@@ -299,4 +297,9 @@
 <?php
 include "footer.php";
 ?>
+
+
    
+
+
+
