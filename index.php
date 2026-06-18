@@ -1,6 +1,10 @@
     <?php
     include "header.php";
-    include "koneksi.php"
+    include "koneksi.php";
+
+
+    $query_renungan = mysqli_query($conn, "SELECT * FROM tb_renungan ORDER BY tanggal_publish DESC LIMIT 1");
+    $tb_renungan = mysqli_fetch_assoc($query_renungan);
     ?>
 
     <section class="hero" id="home">
@@ -11,24 +15,25 @@
     </section>
 
     <!-- Renungan-->
-   <section id="renungan" class="Renungan">
+ <section id="renungan" class="Renungan">
     <div class="renungan-container">
-        <?php if ($data_renungan): ?>
+        <?php if ($tb_renungan): ?>
         <div class="renungan-card">
             <div class="renungan-image">
-                <img src="img/<?php echo $data_renungan['gambar_renungan']; ?>" alt="Renungan Hari Ini">
+                <img src="img/<?php echo $tb_renungan['gambar_renungan']; ?>" alt="Renungan Hari Ini">
             </div>
             <div class="renungan-info">
                 <span class="tag">Renungan Harian</span>
                 <blockquote class="ayat">
-                    "<?php echo $data_renungan['isi_ayat']; ?>"
-                    <br><strong>(<?php echo $data_renungan['referensi_ayat']; ?>)</strong>
+                    "<?php echo $tb_renungan['isi_ayat']; ?>"
+                    <br><strong>(<?php echo $tb_renungan['referensi_ayat']; ?>)</strong>
                 </blockquote>
-                <a href="<?php echo $data_renungan['link_sumber']; ?>" target="_blank" class="btn-renungan">
+                <a href="<?php echo $tb_renungan['link_sumber']; ?>" target="_blank" class="btn-renungan">
                     <span>Baca Selengkapnya</span>
                 </a>
             </div>
         </div>
+        
         <?php else: ?>
             <div class="renungan-card" style="text-align: center; padding: 40px; color: #000;">
                 <h3>Belum Ada Renungan Hari Ini</h3>
