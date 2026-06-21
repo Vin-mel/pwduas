@@ -121,67 +121,27 @@
     </section>
 
     <!-- Dokumentasi -->
-    <section id="dokumentasi">
-        <h2>Dokumentasi</h2>
-        <div class="documentation">
-            <div class="doc-track">
-                <div class="images">
-                    <img src="img/remaja.jpeg" alt="Remaja" />
-                </div>
-                <div class="images">
-                    <img src="img/umum.jpeg" alt="Umum" />
-                </div>
-                <div class="images">
-                    <img src="img/rekreasi.jpeg" alt="rekreasi" />
-                </div>
-                <div class="images">
-                    <img src="img/sm.jpeg" alt="Sekolah minggu" />
-                </div>
-                <div class="images">
-                    <img src="img/ultah.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/photo1.jpeg" alt="photo1" />
-                </div>
-                <div class="images">
-                    <img src="img/WhatsApp Image 2026-04-26 at 10.05.55.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/WhatsApp Image 2026-04-26 at 10.06.14.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/WhatsApp Image 2026-04-26 at 10.06.16.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/remaja.jpeg" alt="Remaja" />
-                </div>
-                <div class="images">
-                    <img src="img/umum.jpeg" alt="Umum" />
-                </div>
-                <div class="images">
-                    <img src="img/rekreasi.jpeg" alt="rekreasi" />
-                </div>
-                <div class="images">
-                    <img src="img/sm.jpeg" alt="Sekolah minggu" />
-                </div>
-                <div class="images">
-                    <img src="img/ultah.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/photo1.jpeg" alt="photo1" />
-                </div>
-                <div class="images">
-                    <img src="img/WhatsApp Image 2026-04-26 at 10.05.55.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/WhatsApp Image 2026-04-26 at 10.06.14.jpeg" alt="Ultah" />
-                </div>
-                <div class="images">
-                    <img src="img/WhatsApp Image 2026-04-26 at 10.06.16.jpeg" alt="Ultah" />
-                </div>
-            </div>
+<section id="dokumentasi"> 
+    <h2>Dokumentasi</h2>
+    <div class="documentation">
+        <div class="doc-track">
+            <?php
+            $sql = "SELECT nama_file_gambar FROM tb_dokumentasi ORDER BY id_foto DESC";
+            $result = $conn->query($sql);
+
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="images">';
+                    echo '<img src="img/' . htmlspecialchars($row['nama_file_gambar']) . '" alt="Dokumentasi GKKB" />';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p style="text-align:center; padding:20px;">Belum ada dokumentasi.</p>';
+            }
+            ?>
         </div>
-    </section>
+    </div>
+</section>  
 
     <!--Jadwal -->
     <section id="jadwal">
