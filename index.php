@@ -136,7 +136,7 @@
                     echo '</div>';
                 }
             } else {
-                echo '<p style="text-align:center; padding:20px;">Belum ada dokumentasi.</p>';
+                echo '<p style="text-align:center; padding:20px; color:#fff">Belum ada dokumentasi.</p>';
             }
             ?>
         </div>
