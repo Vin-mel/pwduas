@@ -13,7 +13,7 @@ $password = $_POST['password'] ?? '';
 if(empty($username) || empty($password)) {
     header("Location: login.php?error=1");
     exit;
-}
+} 
 
 $username = mysqli_real_escape_string($conn, $_POST['username']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);

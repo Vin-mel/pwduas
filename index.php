@@ -127,7 +127,7 @@
         <div class="doc-track">
             <?php
             $sql = "SELECT nama_file_gambar FROM tb_dokumentasi ORDER BY id_foto DESC";
-            $result = $conn->query($sql);
+            $result = mysqli_query($conn, $sql);
 
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
