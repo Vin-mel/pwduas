@@ -96,3 +96,70 @@ body {
   color: #000;
   transform: translateY(-3px);
 }
+
+.admin-layout {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  min-height: 100vh;
+  background-color: #194d5a;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  background-color: #e8f4f7;
+  border-radius: 2rem;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: #e8f4f7;
+  border-radius: 2rem;
+  padding: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.menu-link.active {
+  background-color: #194d5a;
+  color: white;
+  border-color: #194d5a;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+.dashboard-container {
+  view-transition-name: main-box;
+}
+
+.sidebar {
+  view-transition-name: main-box;
+}
+
+.main-content {
+  view-transition-name: content-box;
+}
+
+::view-transition-new(content-box) {
+  animation: fade-slide-in 0.4s ease;
+}
+
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
