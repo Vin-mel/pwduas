@@ -12,9 +12,9 @@ include "../security.php";
   <div class="admin-layout">
     <?php include "../sidebar.php";?>
 
+  </div>
     <div class="main-content">
     <h1>Manajemen Doa</h1>
-</div>
 </div>
 </body>
 </html>
