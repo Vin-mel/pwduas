@@ -182,7 +182,7 @@
                     KAMIS
                 </h2>
                 <h2>
-                    PERSEKUTUAN WANITA
+                    PERSEKUTUAN KASIH
                 </h2>
                 <div class="jam">
                     <i data-feather="clock"></i>
