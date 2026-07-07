@@ -1,3 +1,5 @@
+<?php
+include "koneksi.php";?>
  <!--Permohonan doa-->
     <section id="permohonan">
         <div class="doa-container">
@@ -5,14 +7,14 @@
                 <h2> Permohonan Doa</h2>
                 <p>Tuliskan pergumulanmu, kami akan turut mendoakan</p>
             </div>
-            <form id="doaForm">
+            <form id="doaForm" action="sv_doa.php" method="POST">
                 <div class="input-group">
-                    <label for="fname">Nama Lengkap</label>
-                    <input type="text" id="fname" name="fname" placeholder="Masukkan Nama Kamu...">
+                    <label for="nama_lengkap">Nama Lengkap</label>
+                    <input type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan Nama Kamu...">
                 </div>
                 <div class="input-group">
-                    <label for="doa">Isi Doa/ PergumulanMu</label>
-                    <textarea id="doa" name="doa" rows="4" placeholder="Apa yang ingin kamu daokan?"></textarea>
+                    <label for="isi_doa">Isi Doa/ PergumulanMu</label>
+                    <textarea id="isi_doa" name="isi_doa" rows="4" placeholder="Apa yang ingin kamu daokan?"></textarea>
                 </div>
                 <button type="submit" class="btn-submit">Kirim Permohonan</button>
             </form>

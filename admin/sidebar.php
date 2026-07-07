@@ -13,11 +13,11 @@ if ($folder === 'admin') {
         <h2>Dashboard admin</h2>
         <p>Selamat datang, <strong><?php echo htmlspecialchars($_SESSION['username']);?></strong></p>
     <div class="menu-group">
-    <a href="/GKKB Purnama/admin/dokumentasi/index.php" class="menu-link <?php echo ($current_page == 'dokumentasi') ? 'active' : ''; ?>">Manajemen Dokumentasi</a>
-    <a href="/GKKB Purnama/admin/jadwal/index.php" class="menu-link <?php echo ($current_page == 'jadwal') ? 'active' : ''; ?>">Manajemen Jadwal</a>
-    <a href="/GKKB Purnama/admin/renungan/index.php" class="menu-link <?php echo ($current_page == 'renungan') ? 'active' : ''; ?>">Manajemen Renungan</a>
-    <a href="/GKKB Purnama/admin/pendeta/index.php" class="menu-link <?php echo ($current_page == 'pendeta') ? 'active' : ''; ?>">Manajemen Pendeta</a>
-    <a href="/GKKB Purnama/admin/doa/index.php" class="menu-link <?php echo ($current_page == 'doa') ? 'active' : ''; ?>">Manajemen Doa</a>
-    <a href="/GKKB Purnama/admin/logout.php" class="btn-logout">Log out</a>
+    <a href="/admin/dokumentasi/index.php" class="menu-link <?php echo ($current_page == 'dokumentasi') ? 'active' : ''; ?>">Manajemen Dokumentasi</a>
+    <a href="/admin/jadwal/index.php" class="menu-link <?php echo ($current_page == 'jadwal') ? 'active' : ''; ?>">Manajemen Jadwal</a>
+    <a href="/admin/renungan/index.php" class="menu-link <?php echo ($current_page == 'renungan') ? 'active' : ''; ?>">Manajemen Renungan</a>
+    <a href="/admin/pendeta/index.php" class="menu-link <?php echo ($current_page == 'pendeta') ? 'active' : ''; ?>">Manajemen Pendeta</a>
+    <a href="/admin/doa/index.php" class="menu-link <?php echo ($current_page == 'doa') ? 'active' : ''; ?>">Manajemen Doa</a>
+    <a href="/admin/logout.php" class="btn-logout">Log out</a>
     </div>
 </div>

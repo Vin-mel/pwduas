@@ -33,7 +33,7 @@ while($row = mysqli_fetch_assoc($query)) {
     <td><?= $row['nama_file_gambar']; ?></td>
     <td>
     <a href="hapus.php?id=<?= $row['id_foto']; ?>"
-    onclick="return confirm('yakin mau hapus dokuemntasi ini?')">
+    onclick="return confirm('Yakin mau hapus dokuemntasi ini?')">
     Hapus
     </a>
     </td>
