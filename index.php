@@ -132,7 +132,7 @@
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="images">';
-                    echo '<img src="img/' . htmlspecialchars($row['nama_file_gambar']) . '" alt="Dokumentasi GKKB" />';
+                    echo '<img src="admin/img/' . htmlspecialchars($row['nama_file_gambar']) . '" alt="Dokumentasi GKKB" />';
                     echo '</div>';
                 }
             } else {
