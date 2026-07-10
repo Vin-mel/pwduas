@@ -69,15 +69,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h1>Tambah Dokumentasi</h1>
 
             <?php if (!empty($error)) { ?>
-                <p style="color:red;"><?= htmlspecialchars($error); ?></p>
+                <p class="error-message"><?= htmlspecialchars($error); ?></p>
             <?php } ?>
 
-            <form action="tambah.php" method="POST" enctype="multipart/form-data">
+            <form action="tambah.php" method="POST" enctype="multipart/form-data" class="form-admin">
                 <label>Pilih Gambar:</label><br>
                 <input type="file" name="gambar" accept="image/*" required><br><br>
 
-                <button type="submit">Upload</button>
-                <a href="index.php">Batal</a>
+                <div class="form-actions">
+                <button type="submit" class="btn-upload">Upload</button>
+                <a href="index.php" class="btn-batal">Batal</a>
+</div>
             </form>
         </div>
     </div>

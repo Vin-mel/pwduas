@@ -15,11 +15,11 @@ include "../security.php";
     <div class="main-content">
     <h1>Manajemen Dokumentasi</h1>
 
-    <a href="tambah.php" style="display:inline-block; margin-bottom:15px; padding:8px 16px; background:#1a5276; color:#fff; text-decoration:none; border-radius:5px;">+ Tambah Dokumentasi</a>
+    <a href="tambah.php" class=" btn-tambah">+ Tambah Dokumentasi</a>
     
     <?php include "../../koneksi.php"; ?>
     <div style="overflow-x: auto;">
-    <table class="table-dokumentasi" border="1"  cellpadding="8" cellspacing="0">
+    <table class="table-dokumentasi" cellpadding="8" cellspacing="0">
       <tr>
         <th>ID</th>
           <th>Gambar</th>
@@ -35,7 +35,7 @@ while($row = mysqli_fetch_assoc($query)) {
     <td><img src="../img/<?= $row['nama_file_gambar']; ?>" width="80"></td>
     <td><?= $row['nama_file_gambar']; ?></td>
     <td>
-    <a href="hapus.php?id=<?= $row['id_foto']; ?>"
+    <a href="hapus.php?id=<?= $row['id_foto']; ?>" class="btn-hapus"
     onclick="return confirm('Yakin mau hapus dokuemntasi ini?')">
     Hapus
     </a>
