@@ -1,6 +1,11 @@
-    <?php
-    include "header.php";
-    include "koneksi.php";
+<?php
+session_start();
+$doa_status = $_SESSION['doa_status'] ?? null;
+unset($_SESSION['doa_status']); 
+?>
+<?php
+include "header.php";
+include "koneksi.php";
 
      $query_renungan = mysqli_query($conn, "SELECT * FROM tb_renungan ORDER BY tanggal_publish DESC LIMIT 1");
     $tb_renungan = mysqli_fetch_assoc($query_renungan);
@@ -19,7 +24,7 @@
         <?php if ($tb_renungan): ?>
         <div class="renungan-card">
             <div class="renungan-image">
-                <img src="img/<?php echo $tb_renungan['gambar_renungan']; ?>" alt="Renungan Hari Ini">
+                <img src="admin/img/<?php echo $tb_renungan['gambar_renungan']; ?>" alt="Renungan Hari Ini">
             </div>
             <div class="renungan-info">
                 <span class="tag">Renungan Harian</span>
@@ -257,7 +262,19 @@
 <?php
 include "footer.php";
 ?>
-
+<?php if ($doa_status): ?>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+        <?php if ($doa_status === 'Berhasil dikirim'): ?>
+            alert("Permohonan doa berhasil dikirim!");
+        <?php elseif ($doa_status === 'kosong'): ?>
+            alert("Mohon isi semua kolom.");
+        <?php elseif ($doa_status === 'Gagal dikirim'): ?>
+            alert("Gagal mengirim, silakan coba lagi.");
+        <?php endif; ?>
+    });
+    </script>
+<?php endif; ?>
 
    
 
