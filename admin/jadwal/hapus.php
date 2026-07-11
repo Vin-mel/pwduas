@@ -2,12 +2,24 @@
 include "../security.php";
 include "../../koneksi.php";
 
-if (isset($_GET['id'])){
-    $id = $_GET['id'];
+if (isset($_GET['id']) && is_numeric($_GET['id'])){
+    $id = (int) $_GET['id'];
 
-    mysqli_query($conn, "DELETE FROM tb_jadwal WHERE id_jadwal = '$id'");
+   $stmt = mysqli_prepare($conn, "DELETE FROM tb_jadwal WHERE id_jadwal = ?");
+   mysqli_stmt_bind_param($stmt, "i", $id);
+   mysqli_stmt_execute($stmt);
 
-    header("location: index.php");
+   if (mysqli_stmt_affected_rows($stmt) > 0) {
+    mysqli_stmt_close($stmt);
+    header("location: index.php?status=sukses");
+    exit;
+   }else{
+    mysqli_stmt_close($stmt);
+    header("location: index.php?status=gagal");
+    exit;
+   }
+} else {
+    header("location: index.php?status=invalid");
     exit;
 }
 ?>

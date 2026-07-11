@@ -11,40 +11,52 @@ include "../../koneksi.php";
 </head>
 <body>
   <div class="admin-layout">
-    <?php include "../sidebar.php";?>
+    <?php include "../sidebar.php"; ?>
 
     <div class="main-content">
-    <h1>Manajemen Dokumentasi</h1>
+      <h1>Manajemen Dokumentasi</h1>
 
-    <a href="tambah.php" class=" btn-tambah">+ Tambah Dokumentasi</a>
-    
-    <?php include "../../koneksi.php"; ?>
-    <div style="overflow-x: auto;">
-    <table class="table-dokumentasi" cellpadding="8" cellspacing="0">
-      <tr>
-        <th>ID</th>
+      <a href="tambah.php" class="btn-tambah">+ Tambah Dokumentasi</a>
+
+      <?php if (isset($_GET['status'])): ?>
+          <?php if ($_GET['status'] === 'sukses'): ?>
+              <div class="alert alert-success">Dokumentasi berhasil dihapus.</div>
+          <?php elseif ($_GET['status'] === 'gagal'): ?>
+              <div class="alert alert-danger">Data tidak ditemukan.</div>
+          <?php elseif ($_GET['status'] === 'invalid'): ?>
+              <div class="alert alert-warning">ID tidak valid.</div>
+          <?php endif; ?>
+      <?php endif; ?>
+
+      <div style="overflow-x: auto;">
+      <table class="table-dokumentasi" cellpadding="8" cellspacing="0">
+        <tr>
+          <th>ID</th>
           <th>Gambar</th>
-            <th>Nama</th>
-              <th>Aksi</th>
-</tr>
-<?php
-$query = mysqli_query($conn,"SELECT * FROM tb_dokumentasi");
-while($row = mysqli_fetch_assoc($query)) {
-  ?>
-  <tr>
-    <td><?= $row['id_foto'];?></td>
-    <td><img src="../img/<?= $row['nama_file_gambar']; ?>" width="80"></td>
-    <td><?= $row['nama_file_gambar']; ?></td>
-    <td>
-    <a href="hapus.php?id=<?= $row['id_foto']; ?>" class="btn-hapus"
-    onclick="return confirm('Yakin mau hapus dokuemntasi ini?')">
-    Hapus
-    </a>
-    </td>
-    </tr>
-    <?php } ?>
-    </table>
-</div>
-</div>
+          <th>Nama</th>
+          <th>Aksi</th>
+        </tr>
+        <?php
+        $query = mysqli_query($conn, "SELECT * FROM tb_dokumentasi");
+        while ($row = mysqli_fetch_assoc($query)) {
+            ?>
+            <tr>
+                <td><?= htmlspecialchars($row['id_foto']); ?></td>
+                <td><img src="../img/<?= htmlspecialchars($row['nama_file_gambar']); ?>" width="80"></td>
+                <td><?= htmlspecialchars($row['nama_file_gambar']); ?></td>
+                <td>
+                    <a href="hapus.php?id=<?= $row['id_foto']; ?>" class="btn-hapus"
+                       onclick="return confirm('Yakin mau hapus dokumentasi ini?')">
+                       Hapus
+                    </a>
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+      </table>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

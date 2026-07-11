@@ -14,6 +14,20 @@ include "../../koneksi.php";
     <?php include "../sidebar.php";?>
     <div class="main-content">
       <h1>Manajemen Jadwal</h1>
+
+      
+    <a href="tambah.php" class="btn-tambah">+ Tambah Jadwal</a>
+
+    <?php if (isset($_GET['status'])): ?>
+      <?php if ($_GET['status'] === 'sukses'): ?>
+        <div class="alert-success">Data Jadwal Berhasil Dihapus.</div>
+      <?php elseif($_GET['status'] === 'gagal'): ?>
+        <div class="alert alert-danger">Data tidak ditemukan atau gagal dihapus.</div>
+      <?php elseif($_GET['status'] === 'invalid'): ?>
+        <div class="alert alert-warning">Id tidak valid.</div>
+      <?php endif; ?>
+      <?php endif; ?>
+
       <div style="overflow-x: auto;">
       <table class="table-dokumentasi" cellpadding="8" cellspacing="0">
         <tr>
@@ -24,7 +38,7 @@ include "../../koneksi.php";
           <th>Aksi</th>
         </tr>
         <?php
-        $query = mysqli_query($conn,"SELECT * FROM tb_jadwal ORDER BY hari DESC");
+        $query = mysqli_query($conn,"SELECT * FROM tb_jadwal ORDER BY FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'), jam_mulai ASC");
 
         if (mysqli_num_rows($query) > 0) {
             while($row = mysqli_fetch_assoc($query)) {
@@ -35,6 +49,8 @@ include "../../koneksi.php";
                     <td><?= htmlspecialchars($row['nama_kegiatan']); ?></td>
                     <td><?= htmlspecialchars($row['jam_mulai']); ?></td>
                     <td>
+
+                    <a href="ubah.php?id=<?= $row['id_jadwal']; ?>" class="btn-edit">Edit</a>
                     <a href="hapus.php?id=<?= $row['id_jadwal']; ?>" class="btn-hapus"
                     onclick="return confirm('Yakin mau hapus jadwal ini?')">
                     Hapus

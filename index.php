@@ -148,98 +148,49 @@ include "koneksi.php";
     </div>
 </section>  
 
-    <!--Jadwal -->
-    <section id="jadwal">
-        <h2 class="titlejadwal">JADWAL IBADAH</h2>
-        <div class="borderjadwal">
+   <!--Jadwal -->
+<section id="jadwal">
+    <h2 class="titlejadwal">JADWAL IBADAH</h2>
+    <div class="borderjadwal">
+        <?php
+        $query_jadwal = mysqli_query($conn, "SELECT * FROM tb_jadwal ORDER BY FIELD(hari, 'Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'), jam_mulai ASC");
+
+        $jadwal_grouped = [];
+        while ($row = mysqli_fetch_assoc($query_jadwal)) {
+            $jadwal_grouped[$row['hari']][] = $row;
+        }
+
+        foreach ($jadwal_grouped as $hari => $daftar_kegiatan) {
+            ?>
             <div class="jadwal">
-                <h2>
-                    SELASA
-                </h2>
-                <h2>
-                    PERSEKUTUAN WANITA
-                </h2>
-                <div class="jam">
-                    <i data-feather="clock"></i>
-                    <p class="pkl">
-                        18:30
-                    </p>
-                </div>
-                <p class="minggu">
-                </p>
-            </div>
-            <div class="jadwal">
-                <h2>
-                    RABU
-                </h2>
-                <h2>
-                    KTB REMAJA PEMUDA
-                </h2>
-                <div class="jam">
-                    <i data-feather="clock"></i>
-                    <p class="pkl">
-                        19:00
-                    </p>
-                </div>
-            </div>
-            <div class="jadwal">
-                <h2>
-                    KAMIS
-                </h2>
-                <h2>
-                    PERSEKUTUAN KASIH
-                </h2>
-                <div class="jam">
-                    <i data-feather="clock"></i>
-                    <p class="pkl">
-                        18:30
-                    </p>
-                </div>
-            </div>
-            <div class="jadwal">
-                <h2>
-                    SABTU
-                </h2>
-                <h2>
-                    PERSEKUTUAN REMAJA
-                </h2>
-                <div class="jam">
-                    <i data-feather="clock"></i>
-                    <p class="pkl">
-                        18:00
-                    </p>
-                </div>
-            </div>
-            <div class="jadwal">
-                <h2>MINGGU</h2>
-                <div class="list-minggu">
-                    <!--sesi 1-->
-                    <div class="sesi">
-                        <h3>KU-1</h3>
-                        <div class="jam-mini">
-                            <i data-feather="clock"></i>
-                            <span>08:00</span>
-                        </div>
+                <h2><?= strtoupper(htmlspecialchars($hari)); ?></h2>
+
+                <?php if (count($daftar_kegiatan) === 1): ?>
+                    <?php $item = $daftar_kegiatan[0]; ?>
+                    <h2><?= htmlspecialchars($item['nama_kegiatan']); ?></h2>
+                    <div class="jam">
+                        <i data-feather="clock"></i>
+                        <p class="pkl"><?= date('H:i', strtotime($item['jam_mulai'])); ?></p>
                     </div>
-                    <!-- sesi 2-->
-                    <div class="sesi">
-                        <h3>Sekolah Minggu</h3>
-                        <div class="jam-mini">
-                            <i data-feather="clock"></i>
-                            <span>15:00</span>
-                        </div>
+                <?php else: ?>
+                    <div class="list-minggu">
+                        <?php foreach ($daftar_kegiatan as $item): ?>
+                            <div class="sesi">
+                                <h3><?= htmlspecialchars($item['nama_kegiatan']); ?></h3>
+                                <div class="jam-mini">
+                                    <i data-feather="clock"></i>
+                                    <span><?= date('H:i', strtotime($item['jam_mulai'])); ?></span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                    <!--sesi 3-->
-                    <div class="sesi">
-                        <h3>KU-2</h3>
-                        <div class="jam-mini">
-                            <i data-feather="clock"></i>
-                            <span>18:00</span>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
-    </section>
+            <?php
+        }
+        ?>
+    </div>
+</section>
 
     <!-- Pendeta -->
     <section id="pendeta">
@@ -265,17 +216,16 @@ include "footer.php";
 <?php if ($doa_status): ?>
     <script>
         window.addEventListener('DOMContentLoaded', function() {
-        <?php if ($doa_status === 'Berhasil dikirim'): ?>
+        <?php if ($doa_status === 'berhasil'): ?>
             alert("Permohonan doa berhasil dikirim!");
         <?php elseif ($doa_status === 'kosong'): ?>
             alert("Mohon isi semua kolom.");
-        <?php elseif ($doa_status === 'Gagal dikirim'): ?>
+        <?php elseif ($doa_status === 'gagal'): ?>
             alert("Gagal mengirim, silakan coba lagi.");
         <?php endif; ?>
     });
     </script>
 <?php endif; ?>
-
    
 
 
