@@ -19,14 +19,18 @@ include "../../koneksi.php";
     <a href="tambah.php" class="btn-tambah">+ Tambah Jadwal</a>
 
     <?php if (isset($_GET['status'])): ?>
-      <?php if ($_GET['status'] === 'sukses'): ?>
-        <div class="alert-success">Data Jadwal Berhasil Dihapus.</div>
-      <?php elseif($_GET['status'] === 'gagal'): ?>
-        <div class="alert alert-danger">Data tidak ditemukan atau gagal dihapus.</div>
-      <?php elseif($_GET['status'] === 'invalid'): ?>
-        <div class="alert alert-warning">Id tidak valid.</div>
-      <?php endif; ?>
-      <?php endif; ?>
+  <?php if ($_GET['status'] === 'sukses'): ?>
+    <div class="alert alert-success">Data jadwal berhasil dihapus.</div>
+  <?php elseif($_GET['status'] === 'gagal'): ?>
+    <div class="alert alert-danger">Data tidak ditemukan atau gagal dihapus.</div>
+  <?php elseif($_GET['status'] === 'invalid'): ?>
+    <div class="alert alert-warning">ID tidak valid.</div>
+  <?php elseif ($_GET['status'] === 'tambah_sukses') : ?>
+    <div class="alert alert-success">Data jadwal berhasil ditambahkan.</div>
+  <?php elseif ($_GET['status'] === 'ubah_sukses'): ?>
+    <div class="alert alert-success">Data jadwal berhasil diubah.</div>
+  <?php endif; ?>
+<?php endif; ?>
 
       <div style="overflow-x: auto;">
       <table class="table-dokumentasi" cellpadding="8" cellspacing="0">

@@ -328,3 +328,97 @@ body {
   font-size: 0.9rem;
   margin-bottom: 10px;
 }
+
+
+/* notifikasi status */
+
+.alert{
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  border-left: 5px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-success {
+  background-color: #e3f7ea;
+  color: #1e7e42;
+  border-left-color: #28a745;
+}
+
+.alert-success::before{
+  content:  "✓";
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.alert-danger{
+  background-color: #fbdede;
+  color: #d64545;
+  border-left-color: #d64545;
+}
+
+.alert-danger::before{
+  content:  "✕";
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.alert-warning{
+  background-color: #fff6e0;
+  color: #b8860b;
+  border-left-color: #f0b429;
+}
+
+.alert-warning::before{
+  content:  "!";
+  font-weight: 800;
+  font-size: 1.1re,;
+}
+
+/* tombol tambah dan ubah */
+.form-admin select,
+.form-admin input[type="text"],
+.form-admin input[type="time"]{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #fff;
+  border: 2px solid #d1e3e7;
+  border-radius: 10px;
+  font-family: "Popins", sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.form-admin select,
+.form-admin input[type="text"]:focus,
+.form-admin input[type="time"]:focus{
+  outline: none;
+  border-color: #194d5a;
+}
+
+.btn-simpan{
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: #194d5a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: "Popins", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-simpan:hover{
+  background-color: #123640;
+}
