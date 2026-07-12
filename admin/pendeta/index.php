@@ -32,12 +32,12 @@ include "../../koneksi.php";
                 ?>
                 <tr>
                     <td><?= $row['id_pendeta']; ?></td>
-                    <td><?= htmlspecialchars($row['foto_pendeta']); ?></td>
+                    <td><img src="../img/<?= htmlspecialchars($row['foto_pendeta']); ?>" width="80"></td>
                     <td><?= htmlspecialchars($row['nama_pendeta']); ?></td>
                     <td><?= htmlspecialchars($row['biodata']); ?></td>
                     <td>
-                    <a href="hapus.php?id=<?= $row['id_doa']; ?>" class="btn-hapus"
-                    onclick="return confirm('Yakin mau hapus permohonan doa ini?')">
+                    <a href="hapus.php?id=<?= $row['id_pendeta']; ?>" class="btn-hapus"
+                    onclick="return confirm('Yakin mau hapus informasi pendeta?')">
                     Hapus
                     </a>
                     </td>

@@ -193,17 +193,22 @@ include "koneksi.php";
 </section>
 
     <!-- Pendeta -->
+     <?php
+    $query = mysqli_query($conn, "SELECT * FROM tb_pendeta ORDER BY id_pendeta DESC LIMIT 1");
+    $pendeta = mysqli_fetch_assoc($query);
+    ?>
     <section id="pendeta">
         <h2 class="title-pendeta">PENDETA</h2>
         <div class="pendeta-content">
-            <div class="pendeta"><img src="img/pendeta.jpeg" alt="pendeta" /> </div>
+            <div class="pendeta">
+                <img src="admin/img/<?= htmlspecialchars($pendeta['foto_pendeta']??'defualt.jpeg')?>" alt="pendeta" />
+            </div>
             <div class="biodata">
                 <h2>
-                    Pdt. Djong Tsiu Hiong
+                    <?= htmlspecialchars($pendeta['nama_pendeta'] ?? 'Belum ada data')?>
                 </h2>
                 <p>
-                    Dikarenakan Pdt. Djong Tsiu Hiong selalu sibuk, kami tidak dapat mendapatkan informasi tentang
-                    beliau.
+                    <?= nl2br(htmlspecialchars($pendeta['biodata'] ?? 'Informasi Belum Tersedia'))?>
                 </p>
             </div>
         </div>
