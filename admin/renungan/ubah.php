@@ -26,18 +26,22 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_renungan = (int) $_POST['id_renungan'];
+    $judul_renungan = trim($_POST['judul_renungan'] ?? '');
     $isi_ayat = trim($_POST['isi_ayat'] ?? '');
+    $isi_ayat_singkat = trim($_POST['isi_ayat_singkat'] ?? '');
     $isi_lengkap = trim($_POST['isi_lengkap'] ?? '');
     $referensi_ayat = trim($_POST['referensi_ayat'] ?? '');
     $tanggal_publish = trim($_POST['tanggal_publish'] ?? '');
     $link_sumber = trim($_POST['link_sumber'] ?? '');
     $gambar_lama = $data['gambar_renungan'];
 
-    if (empty($isi_ayat) || empty($isi_lengkap) || empty($referensi_ayat) || empty($tanggal_publish)) {
-        $error = "Isi Ayat, Isi Renungan Lengkap, Referensi Ayat, dan Tanggal Publish wajib diisi.";
+    if (empty($judul_renungan) || empty($isi_ayat) || empty($isi_ayat_singkat) || empty($isi_lengkap) || empty($referensi_ayat) || empty($tanggal_publish)) {
+        $error = "Judul, Isi Ayat, Isi Ayat Singkat, Isi Renungan Lengkap, Referensi Ayat, dan Tanggal Publish wajib diisi.";
         $data = [
             'id_renungan' => $id_renungan,
+            'judul_renungan' => $judul_renungan,
             'isi_ayat' => $isi_ayat,
+            'isi_ayat_singkat' => $isi_ayat_singkat,
             'isi_lengkap' => $isi_lengkap,
             'referensi_ayat' => $referensi_ayat,
             'tanggal_publish' => $tanggal_publish,
@@ -74,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (empty($error)) {
-            $stmt = mysqli_prepare($conn, "UPDATE tb_renungan SET isi_ayat = ?, isi_lengkap = ?, referensi_ayat = ?, gambar_renungan = ?, tanggal_publish = ?, link_sumber = ? WHERE id_renungan = ?");
-            mysqli_stmt_bind_param($stmt, "ssssssi", $isi_ayat, $isi_lengkap, $referensi_ayat, $nama_file, $tanggal_publish, $link_sumber, $id_renungan);
+            $stmt = mysqli_prepare($conn, "UPDATE tb_renungan SET judul_renungan = ?, isi_ayat = ?, isi_ayat_singkat = ?, isi_lengkap = ?, referensi_ayat = ?, gambar_renungan = ?, tanggal_publish = ?, link_sumber = ? WHERE id_renungan = ?");
+            mysqli_stmt_bind_param($stmt, "ssssssssi", $judul_renungan, $isi_ayat, $isi_ayat_singkat, $isi_lengkap, $referensi_ayat, $nama_file, $tanggal_publish, $link_sumber, $id_renungan);
 
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_close($stmt);
@@ -109,14 +113,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="ubah.php?id=<?= $data['id_renungan']; ?>" method="POST" enctype="multipart/form-data" class="form-admin">
                 <input type="hidden" name="id_renungan" value="<?= htmlspecialchars($data['id_renungan'] ?? ''); ?>">
 
-                <label for="isi_ayat">Isi Ayat</label>
-                <textarea name="isi_ayat" id="isi_ayat" rows="4" required><?= htmlspecialchars($data['isi_ayat'] ?? ''); ?></textarea>
+                <label for="judul_renungan">Judul Renungan</label>
+                <input type="text" name="judul_renungan" id="judul_renungan" value="<?= htmlspecialchars($data['judul_renungan'] ?? ''); ?>" placeholder="Misal: Allah Terus Bekerja" required>
 
                 <label for="referensi_ayat">Referensi Ayat</label>
-                <input type="text" name="referensi_ayat" id="referensi_ayat" value="<?= htmlspecialchars($data['referensi_ayat'] ?? ''); ?>" required>
+                <input type="text" name="referensi_ayat" id="referensi_ayat" value="<?= htmlspecialchars($data['referensi_ayat'] ?? ''); ?>" placeholder="Misal: Yohanes 3:16" required>
 
-                <label for="isi_lengkap">Isi Lengkap</label>
-                <textarea name="isi_lengkap" id="isi_lengkap" rows="10" required><?= htmlspecialchars($data['isi_lengkap'] ?? ''); ?></textarea>
+                <label for="isi_ayat_singkat">Isi Ayat Singkat (untuk tampilan publik di beranda)</label>
+                <textarea name="isi_ayat_singkat" id="isi_ayat_singkat" rows="3" placeholder="Cuplikan pendek ayat, akan tampil di halaman utama..." required><?= htmlspecialchars($data['isi_ayat_singkat'] ?? ''); ?></textarea>
+
+                <label for="isi_ayat">Isi Ayat Lengkap (untuk halaman detail, boleh sepanjang apapun)</label>
+                <textarea name="isi_ayat" id="isi_ayat" rows="6" placeholder="Tuliskan isi ayat lengkap renungan..." required><?= htmlspecialchars($data['isi_ayat'] ?? ''); ?></textarea>
+
+                <label for="isi_lengkap">Isi Renungan Lengkap</label>
+                <textarea name="isi_lengkap" id="isi_lengkap" rows="10" placeholder="Tuliskan Renungan Lengkap di sini...." required><?= htmlspecialchars($data['isi_lengkap'] ?? ''); ?></textarea>
 
                 <label>Gambar Saat Ini</label>
                 <img src="../img/<?= htmlspecialchars($data['gambar_renungan'] ?? ''); ?>" width="120" style="display:block; margin-bottom:10px; border-radius:8px;">
