@@ -6,13 +6,16 @@ $id_user = $_SESSION['id_user'];
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $judul_renungan = trim($_POST['judul_renungan'] ?? '');
     $isi_ayat = trim($_POST['isi_ayat'] ?? '');
+    $isi_ayat_singkat = trim($_POST['isi_ayat_singkat'] ?? '');
+    $isi_lengkap = trim($_POST['isi_lengkap'] ?? '');
     $referensi_ayat = trim($_POST['referensi_ayat'] ?? '');
     $tanggal_publish = trim($_POST['tanggal_publish'] ?? '');
     $link_sumber = trim($_POST['link_sumber'] ?? '');
 
-    if (empty($isi_ayat) || empty($referensi_ayat) || empty($tanggal_publish) || empty($link_sumber)) {
-        $error = "Semua field wajib diisi.";
+    if (empty($judul_renungan) || empty($isi_ayat) || empty($isi_ayat_singkat) || empty($isi_lengkap) || empty($referensi_ayat) || empty($tanggal_publish)) {
+        $error = "Judul, Isi Ayat, Isi Ayat Singkat, Isi Renungan Lengkap, Referensi Ayat, dan Tanggal Publish wajib diisi.";
     } elseif (!isset($_FILES['gambar']) || $_FILES['gambar']['error'] != 0) {
         $error = "Pilih gambar renungan terlebih dahulu.";
     } else {
@@ -39,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $folder_tujuan = $folder_upload . $nama_file;
 
             if (move_uploaded_file($tmp_name, $folder_tujuan)) {
-                $stmt = mysqli_prepare($conn, "INSERT INTO tb_renungan (isi_ayat, referensi_ayat, gambar_renungan, tanggal_publish, id_user, link_sumber) VALUES (?, ?, ?, ?, ?, ?)");
-                mysqli_stmt_bind_param($stmt, "ssssis", $isi_ayat, $referensi_ayat, $nama_file, $tanggal_publish, $id_user, $link_sumber);
+                $stmt = mysqli_prepare($conn, "INSERT INTO tb_renungan (judul_renungan, isi_ayat, isi_ayat_singkat, isi_lengkap, referensi_ayat, gambar_renungan, tanggal_publish, id_user, link_sumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                mysqli_stmt_bind_param($stmt, "sssssssis", $judul_renungan, $isi_ayat, $isi_ayat_singkat, $isi_lengkap, $referensi_ayat, $nama_file, $tanggal_publish, $id_user, $link_sumber);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
 
@@ -71,11 +74,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <form action="tambah.php" method="POST" enctype="multipart/form-data" class="form-admin">
-                <label for="isi_ayat">Isi Ayat</label>
-                <textarea name="isi_ayat" id="isi_ayat" rows="4" placeholder="Tuliskan isi ayat renungan..." required></textarea>
+                <label for="judul_renungan">Judul Renungan</label>
+                <input type="text" name="judul_renungan" id="judul_renungan" placeholder="Misal: Allah Terus Bekerja" required>
 
                 <label for="referensi_ayat">Referensi Ayat</label>
                 <input type="text" name="referensi_ayat" id="referensi_ayat" placeholder="Misal: Yohanes 3:16" required>
+
+                <label for="isi_ayat_singkat">Isi Ayat Singkat (untuk tampilan publik di beranda)</label>
+                <textarea name="isi_ayat_singkat" id="isi_ayat_singkat" rows="3" placeholder="Cuplikan pendek ayat, akan tampil di halaman utama..." required></textarea>
+
+                <label for="isi_ayat">Isi Ayat Lengkap (untuk halaman detail, boleh sepanjang apapun)</label>
+                <textarea name="isi_ayat" id="isi_ayat" rows="6" placeholder="Tuliskan isi ayat lengkap renungan..." required></textarea>
+
+                <label for="isi_lengkap">Isi Renungan Lengkap</label>
+                <textarea name="isi_lengkap" id="isi_lengkap" rows="10" placeholder="Tuliskan Renungan Lengkap di sini...." required></textarea>
 
                 <label for="gambar">Gambar Renungan</label>
                 <input type="file" name="gambar" accept="image/*" required>
@@ -83,8 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="tanggal_publish">Tanggal Publish</label>
                 <input type="date" name="tanggal_publish" id="tanggal_publish" required>
 
-                <label for="link_sumber">Link Sumber Artikel</label>
-                <input type="url" name="link_sumber" id="link_sumber" placeholder="https://..." required>
+                <label for="link_sumber">Link Sumber Artikel (opsional, kalau ada referensi tambahan)</label>
+                <input type="url" name="link_sumber" id="link_sumber" placeholder="https://...">
 
                 <div class="form-actions">
                     <button type="submit" class="btn-simpan">Simpan</button>
