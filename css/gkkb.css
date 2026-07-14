@@ -207,7 +207,7 @@ body {
 #renungan {
   scroll-margin-top: 100px;
 }
-.renungan-header{
+.renungan-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -674,7 +674,15 @@ body {
   height: 4px;
   background: #194d5a;
   z-index: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s ease-out;
 }
+
+.borderjadwal.muncul::before {
+  transform: scaleX(1);
+}
+
 .jadwal {
   width: 20rem;
   height: auto;

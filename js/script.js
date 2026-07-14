@@ -42,7 +42,7 @@ const observer = new IntersectionObserver(
 );
 //js buat mengawasi kotak visi misi
 const elemenAnimasi = document.querySelectorAll(
-  ".vismis, .misvis, .hero .content, .jadwal",
+  ".vismis, .misvis, .hero .content, .jadwal, .borderjadwal",
 );
 elemenAnimasi.forEach((el) => observer.observe(el));
 

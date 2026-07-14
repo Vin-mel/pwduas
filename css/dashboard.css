@@ -247,6 +247,22 @@ body {
   background-color: #f5b8b8;
 }
 
+.btn-edit {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #194d5a;
+  color: #d1e3e7;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+  background-color: #f5b8b8;
+}
+
 /* halaman tambah dokumentasi */
 
 .form-admin {
@@ -329,10 +345,9 @@ body {
   margin-bottom: 10px;
 }
 
-
 /* notifikasi status */
 
-.alert{
+.alert {
   padding: 14px 18px;
   border-radius: 10px;
   font-family: "Poppins", sans-serif;
@@ -351,40 +366,40 @@ body {
   border-left-color: #28a745;
 }
 
-.alert-success::before{
-  content:  "✓";
+.alert-success::before {
+  content: "✓";
   font-weight: 800;
   font-size: 1.1rem;
 }
 
-.alert-danger{
+.alert-danger {
   background-color: #fbdede;
   color: #d64545;
   border-left-color: #d64545;
 }
 
-.alert-danger::before{
-  content:  "✕";
+.alert-danger::before {
+  content: "✕";
   font-weight: 800;
   font-size: 1.1rem;
 }
 
-.alert-warning{
+.alert-warning {
   background-color: #fff6e0;
   color: #b8860b;
   border-left-color: #f0b429;
 }
 
-.alert-warning::before{
-  content:  "!";
+.alert-warning::before {
+  content: "!";
   font-weight: 800;
-  font-size: 1.1re,;
+  font-size: 1.1re;
 }
 
 /* tombol tambah dan ubah */
 .form-admin select,
 .form-admin input[type="text"],
-.form-admin input[type="time"]{
+.form-admin input[type="time"] {
   display: block;
   width: 100%;
   padding: 10px;
@@ -400,12 +415,12 @@ body {
 
 .form-admin select,
 .form-admin input[type="text"]:focus,
-.form-admin input[type="time"]:focus{
+.form-admin input[type="time"]:focus {
   outline: none;
   border-color: #194d5a;
 }
 
-.btn-simpan{
+.btn-simpan {
   display: inline-block;
   padding: 10px 24px;
   background-color: #194d5a;
@@ -419,6 +434,6 @@ body {
   transition: background-color 0.3s;
 }
 
-.btn-simpan:hover{
+.btn-simpan:hover {
   background-color: #123640;
 }
