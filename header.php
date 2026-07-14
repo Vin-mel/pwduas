@@ -1,3 +1,7 @@
+<?php
+$halaman_sekarang = basename($_SERVER['PHP_SELF']);
+$prefix = ($halaman_sekarang === 'index.php') ? '' : 'index.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -20,14 +24,14 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="#" class="navbar-logo">GKKB<span>Purnama</span></a>
+        <a href="<?= $prefix ?>#home" class="navbar-logo">GKKB<span>Purnama</span></a>
         <div class="navbar-nav">
-            <a href="#home">Home</a>
-            <a href="#renungan">Renungan</a>
-            <a href="#about">Sejarah</a>
-            <a href="#visimisi">Visi & Misi</a>
-            <a href="#dokumentasi">Dokumentasi</a>
-            <a href="#jadwal">Jadwal Ibadah</a>
+            <a href="<?= $prefix ?>#home">Home</a>
+            <a href="<?= $prefix ?>#renungan">Renungan</a>
+            <a href="<?= $prefix ?>#about">Sejarah</a>
+            <a href="<?= $prefix ?>#visimisi">Visi & Misi</a>
+            <a href="<?= $prefix ?>#dokumentasi">Dokumentasi</a>
+            <a href="<?= $prefix ?>#jadwal">Jadwal Ibadah</a>
         </div>
 
         <div class="navbar-extra">

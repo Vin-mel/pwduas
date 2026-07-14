@@ -25,6 +25,8 @@ include "../../koneksi.php";
               <div class="alert alert-danger">Data tidak ditemukan.</div>
           <?php elseif ($_GET['status'] === 'invalid'): ?>
               <div class="alert alert-warning">ID tidak valid.</div>
+          <?php elseif ($_GET['status'] === 'tambah_sukses'): ?>
+            <div class="alert alert-success">Dokumentasi berhasil ditambahkan.</div>
           <?php endif; ?>
       <?php endif; ?>
 

@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            header("Location: index.php");
+            header("Location: index.php?status=tambah_sukses");
             exit;
         } else {
             $error = "Gagal upload gambar.";

@@ -1,4 +1,8 @@
- <!-- footer-->
+<?php
+$halaman_sekarang = basename($_SERVER['PHP_SELF']);
+$prefix = ($halaman_sekarang === 'index.php') ? '' : 'index.php';
+?>
+    <!-- footer-->
     <footer id="kontak">
         <div class="footer-container">
             <div class="footer-section">
@@ -12,14 +16,14 @@
             <div class="footer-section">
                 <h3>Navigasi</h3>
                 <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#renungan">Renungan</a></li>
-                    <li><a href="#about">Sejarah</a></li>
-                    <li><a href="#visimisi">Visi&Misi</a></li>
-                    <li><a href="#dokumentasi">Dokumentasi</a></li>
-                    <li><a href="#jadwal">Jadwal Ibadah</a></li>
-                    <li><a href="#pendeta">Pendeta</a></li>
-                    <li><a href="#permohonan">Permohonan Doa</a></li>
+                    <li><a href="<?= $prefix ?>#home">Home</a></li>
+                    <li><a href="<?= $prefix ?>#renungan">Renungan</a></li>
+                    <li><a href="<?= $prefix ?>#about">Sejarah</a></li>
+                    <li><a href="<?= $prefix ?>#visimisi">Visi&Misi</a></li>
+                    <li><a href="<?= $prefix ?>#dokumentasi">Dokumentasi</a></li>
+                    <li><a href="<?= $prefix ?>#jadwal">Jadwal Ibadah</a></li>
+                    <li><a href="<?= $prefix ?>#pendeta">Pendeta</a></li>
+                    <li><a href="<?= $prefix ?>#permohonan">Permohonan Doa</a></li>
                 </ul>
             </div>
             <div class="footer-section">
