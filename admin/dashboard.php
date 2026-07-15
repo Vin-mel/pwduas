@@ -23,6 +23,7 @@ $username = $_SESSION["username"];
         <a href= "renungan/index.php" class="menu-link">Manajemen Renungan </a>
         <a href= "pendeta/index.php" class="menu-link">Manajemen Pendeta </a>
         <a href= "doa/index.php" class="menu-link">Manajemen Doa </a>
+        <a href="kelola_admin.php" class="menu-link">Kelola Admin </a>
       </div>
         <a href= "logout.php" class="btn-logout">Log out </a>
     </div>
