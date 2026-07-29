@@ -18,7 +18,7 @@ if ($folder === 'admin') {
     <a href="/admin/renungan/index.php" class="menu-link <?php echo ($current_page == 'renungan') ? 'active' : ''; ?>">Manajemen Renungan</a>
     <a href="/admin/pendeta/index.php" class="menu-link <?php echo ($current_page == 'pendeta') ? 'active' : ''; ?>">Manajemen Pendeta</a>
     <a href="/admin/doa/index.php" class="menu-link <?php echo ($current_page == 'doa') ? 'active' : ''; ?>">Manajemen Doa</a>
-    <a href="/admin/kelola_admin.php" class="menu-link <?php echo ($current_page == 'kelola_admin.php') ? 'active' : ''; ?>">Kelola Admin</a>  
+    <a href="/admin/kelola_admin/kelola_admin.php" class="menu-link <?php echo ($current_page == 'kelola_admin.php') ? 'active' : ''; ?>">Kelola Admin</a>  
     <a href="/admin/logout.php" class="btn-logout">Log out</a>
     </div>
 </div>

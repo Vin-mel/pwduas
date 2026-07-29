@@ -14,7 +14,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Playwrite NZ Basic", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg);
   color: #fff;
   overflow-x: hidden;
@@ -52,7 +52,7 @@ body {
   font-weight: 700;
   color: #fff;
   font-style: italic;
-  font-family: "Playwrite NZ Basic", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .navbar .navbar-logo span {
   color: var(--primary);
@@ -241,6 +241,30 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+}
+.renungan-kosong{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #194d5a;
+  gap: 0.8rem;
+}
+.renungan-kosong-icon{
+  font-size: 3rem;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+.renungan-kosong p{
+  font-size: 1.2rem;
+  color: #888;
+  margin: 0;
+  max-width: 400px;
+}
+.renungan-kosong h3{
+  font-size: 1.8rem;
+  margin: 0;
 }
 .tag {
   background: #4e7e8d;
@@ -688,7 +712,7 @@ body {
   font-size: 3.7rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-family: "Playwrite NZ Basic", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .Misi p {
@@ -724,7 +748,7 @@ body {
   margin-top: 2rem;
   justify-content: center;
   margin-bottom: 1rem;
-  font-family: "Playwrite NZ Basic", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .vismis:hover p,
 .misvis:hover p {
@@ -1169,7 +1193,7 @@ body {
   overflow-wrap: break-word;
 }
 .biodata p {
-  font-family: "Playwrite NZ Basic", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #194d5a;
   max-width: 500px;
   font-size: 1.9rem;

@@ -42,10 +42,11 @@
     </a>
 </div>
         <?php else: ?>
-            <div class="renungan-card" style="text-align: center; padding: 40px; color: #000;">
-                <h3>Belum Ada Renungan Hari Ini</h3>
-                <p>Silakan hubungi admin untuk memperbarui konten renungan harian.</p>
-            </div>
+        <div class="renungan-card renungan-kosong">
+         <div class="renungan-kosong-icon">📖</div>
+          <h3>Belum Ada Renungan Hari Ini</h3>
+         <p>Silakan hubungi admin untuk memperbarui konten renungan harian.</p>
+        </div>
         <?php endif; ?>
     </div>
 </section>

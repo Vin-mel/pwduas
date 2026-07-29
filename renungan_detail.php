@@ -6,13 +6,13 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit;
 }
 
-$id = (int) $_GET['id'];
-$stmt = mysqli_prepare($conn, "SELECT * FROM tb_renungan WHERE id_renungan = ?");
-mysqli_stmt_bind_param($stmt, "i", $id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$renungan = mysqli_fetch_assoc($result);
-mysqli_stmt_close($stmt);
+        $id = (int) $_GET['id'];
+        $stmt = mysqli_prepare($conn, "SELECT * FROM tb_renungan WHERE id_renungan = ?");
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $renungan = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($stmt);
 
 if (!$renungan) {
     header("Location: index.php");

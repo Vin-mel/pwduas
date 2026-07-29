@@ -1,6 +1,6 @@
 <?php
-include "security.php";
-include "../koneksi.php";
+include "../security.php";
+include "../../koneksi.php";
 
 $error = "";
 $sukses = "";
@@ -69,20 +69,35 @@ $daftarAdmin = mysqli_query($conn, "SELECT id_user, username FROM tb_user ORDER 
 <head>
     <meta charset="UTF-8">
     <title>Kelola Admin</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
 </head>
 <body>
     <div class="admin-layout">
-        <?php include "sidebar.php"; ?>
+        <?php include "../sidebar.php"; ?>
         <div class="main-content">
             <h1>Kelola Admin</h1>
+
+             <?php if (isset($_GET['status'])): ?>
+        <?php if ($_GET['status'] === 'ubah_sukses'): ?>
+            <div class="alert alert-success">Data admin berhasil diubah.</div>
+        <?php elseif ($_GET['status'] === 'gagal'): ?>
+            <div class="alert alert-danger">Data tidak ditemukan.</div>
+        <?php elseif ($_GET['status'] === 'invalid'): ?>
+            <div class="alert alert-warning">ID tidak valid.</div>
+         <?php elseif ($_GET['status'] === 'tambah_sukses') : ?>
+    <div class="alert alert-success">Data admin berhasil ditambahkan.</div>
+  <?php elseif ($_GET['status'] === 'ubah_sukses'): ?>
+    <div class="alert alert-success">Data admin berhasil diubah.</div>
+        <?php endif; ?>
+    <?php endif; ?>
+
 
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger"><?= htmlspecialchars($error); ?></div>
             <?php endif; ?>
 
             <?php if (!empty($sukses)): ?>
-                <div class="alert alert-sukses"><?= htmlspecialchars($sukses); ?></div>
+                <div class="alert alert-success"><?= htmlspecialchars($sukses); ?></div>
             <?php endif; ?>
 
             <h2>Tambah Admin Baru</h2>
@@ -104,27 +119,24 @@ $daftarAdmin = mysqli_query($conn, "SELECT id_user, username FROM tb_user ORDER 
             </form>
 
             <h2>Daftar Admin</h2>
-            <table class="tabel-admin">
-                <thead>
+            <table class="table-dokumentasi" cellpadding="8" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Aksi</th>
+                </tr>
+                <?php while ($row = mysqli_fetch_assoc($daftarAdmin)): ?>
                     <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Aksi</th>
+                        <td><?= htmlspecialchars($row['id_user']); ?></td>
+                        <td><?= htmlspecialchars($row['username']); ?></td>
+                        <td>
+                            <a href="edit_admin.php?id=<?= $row['id_user']; ?>" class="btn-edit">Edit</a>
+                            <a href="kelola_admin.php?hapus=<?= $row['id_user']; ?>"
+                               onclick="return confirm('Yakin mau hapus admin ini?');"
+                               class="btn-hapus">Hapus</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = mysqli_fetch_assoc($daftarAdmin)): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['id_user']); ?></td>
-                            <td><?= htmlspecialchars($row['username']); ?></td>
-                            <td>
-                                <a href="kelola_admin.php?hapus=<?= $row['id_user']; ?>"
-                                   onclick="return confirm('Yakin mau hapus admin ini?');"
-                                   class="btn-hapus">Hapus</a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
+                <?php endwhile; ?>
             </table>
         </div>
     </div>
