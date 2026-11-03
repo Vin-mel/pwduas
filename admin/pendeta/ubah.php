@@ -29,6 +29,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_pendeta = (int) $_POST['id_pendeta'];
     $nama_pendeta = trim($_POST['nama_pendeta'] ?? '');
+    $jabatan = trim($_POST['jabatan'] ?? 'Pendeta');
     $biodata = trim($_POST['biodata'] ?? '');
     $foto_lama = $data['foto_pendeta'];
 
@@ -37,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = [
             'id_pendeta' => $id_pendeta,
             'nama_pendeta' => $nama_pendeta,
+            'jabatan' => $jabatan,
             'biodata' => $biodata,
             'foto_pendeta' => $foto_lama
         ];
@@ -75,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (empty($error)) {
-            $stmt = mysqli_prepare($conn, "UPDATE tb_pendeta SET nama_pendeta = ?, biodata = ?, foto_pendeta = ? WHERE id_pendeta = ?");
-            mysqli_stmt_bind_param($stmt, "sssi", $nama_pendeta, $biodata, $nama_file, $id_pendeta);
+            $stmt = mysqli_prepare($conn, "UPDATE tb_pendeta SET nama_pendeta = ?, jabatan = ?, biodata = ?, foto_pendeta = ? WHERE id_pendeta = ?");
+            mysqli_stmt_bind_param($stmt, "ssssi", $nama_pendeta, $jabatan, $biodata, $nama_file, $id_pendeta);
 
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_close($stmt);
@@ -92,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = [
             'id_pendeta' => $id_pendeta,
             'nama_pendeta' => $nama_pendeta,
+            'jabatan' => $jabatan,
             'biodata' => $biodata,
             'foto_pendeta' => $nama_file
         ];
@@ -126,6 +129,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="nama_pendeta">Nama Pendeta</label>
                 <input type="text" name="nama_pendeta" id="nama_pendeta" value="<?= htmlspecialchars($data['nama_pendeta']); ?>" required>
+
+                <label for="jabatan">Jabatan</label>
+                <select name="jabatan" id="jabatan" required>
+                    <?php
+                    $daftar_jabatan = ['Pendeta', 'Hamba Tuhan', 'Majelis'];
+                    foreach ($daftar_jabatan as $j) {
+                        $selected = ($data['jabatan'] === $j) ? 'selected' : '';
+                        echo "<option value=\"$j\" $selected>$j</option>";
+                    }
+                    ?>
+                </select>
 
                 <label for="biodata">Biodata</label>
                 <textarea name="biodata" id="biodata" rows="6" required><?= htmlspecialchars($data['biodata']); ?></textarea>

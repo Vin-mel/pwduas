@@ -119,7 +119,7 @@ include "koneksi.php";
     </div>
 </section>  
 
-   <!--Jadwal -->
+ <!--Jadwal -->
 <section id="jadwal">
     <h2 class="titlejadwal">JADWAL IBADAH</h2>
     <div class="borderjadwal">
@@ -162,30 +162,10 @@ include "koneksi.php";
         ?>
     </div>
 </section>
+   
+<?php include "pendeta.php"; ?>
 
-    <!-- Pendeta -->
-     <?php
-    $query = mysqli_query($conn, "SELECT * FROM tb_pendeta ORDER BY id_pendeta DESC LIMIT 1");
-    $pendeta = mysqli_fetch_assoc($query);
-    ?>
-    <section id="pendeta">
-        <h2 class="title-pendeta">PENDETA</h2>
-        <div class="pendeta-content">
-            <div class="pendeta">
-                <img src="admin/img/<?= htmlspecialchars($pendeta['foto_pendeta']??'defualt.jpeg')?>" alt="pendeta" />
-            </div>
-            <div class="biodata">
-                <h2>
-                    <?= htmlspecialchars($pendeta['nama_pendeta'] ?? 'Belum ada data')?>
-                </h2>
-                <p>
-                    <?= nl2br(htmlspecialchars($pendeta['biodata'] ?? 'Informasi Belum Tersedia'))?>
-                </p>
-            </div>
-        </div>
-    </section>
-
-   <?php include "doa_frm.php"; ?>
+<?php include "doa_frm.php"; ?>
 <?php
 include "footer.php";
 ?>
@@ -202,7 +182,5 @@ include "footer.php";
     });
     </script>
 <?php endif; ?>
-   
-
 
 

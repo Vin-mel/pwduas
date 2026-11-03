@@ -106,9 +106,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="password">Password Baru (opsional, kosongkan jika tidak diganti)</label>
                 <input type="password" name="password" id="password" minlength="6">
+                <small class="form-hint">Minimal 6 Karakte, Kosongkan jika  tidak ingin ganti password</small>
 
                 <label for="konfirmasi">Konfirmasi Password Baru</label>
                 <input type="password" name="konfirmasi" id="konfirmasi" minlength="6">
+                <small class="form-hint">Ulangi password yang baru yang sama</small>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-simpan">Simpan Perubahan</button>

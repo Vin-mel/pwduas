@@ -220,13 +220,18 @@ body {
   vertical-align: middle;
   border-left: none !important;
   border-right: none !important;
+  white-space: normal;
+}
+
+.table-dokumentasi td:nth-child(3) {
+  min-width: 300px;
 }
 
 .table-dokumentasi tr:hover td {
   background-color: #f4f9fa;
 }
 
-.tabe-dokumentasi img {
+.table-dokumentasi img {
   border-radius: 6px;
   object-fit: cover;
 }
@@ -394,7 +399,7 @@ body {
 .alert-warning::before {
   content: "!";
   font-weight: 800;
-  font-size: 1.1re;
+  font-size: 1.1rem;
 }
 
 /* tombol tambah dan ubah */
@@ -496,8 +501,8 @@ body {
     border-radius: 12px;
   }
   .table-dokumentasi thead,
-  .table-dokumentasi thody,
-  .tabe-dokumentasi tr {
+.table-dokumentasi tbody,
+.table-dokumentasi tr {
     display: table;
     width: 100%;
     table-layout: auto;
@@ -520,7 +525,7 @@ body {
   padding: 12px;
 }
 .main-content{
-  pad: 16px;
+  padding: 16px;
 }
 .main-content h1{
   font-size: 1.3rem;
@@ -533,11 +538,11 @@ body {
 }
 
 .table-dokumentasi th,
-.tabe-dokumentasi td{
+.table-dokumentasi td {
   padding: 8px 10px;
   font-size: 0.8rem;
 }
-.tabe-dokumentasi img{
+.table-dokumentasi img {
   width: 50px;
   height: 50px;
 }
@@ -551,5 +556,28 @@ body {
   max-width: 100%;
 }
 }
-
 /* END RESPONSIVE */
+
+.table-dokumentasi td .btn-edit,
+.table-dokumentasi td .btn-hapus {
+  display: inline-block;
+  margin-bottom: 6px;
+  margin-right: 6px;
+}
+
+.table-dokumentasi td:last-child {
+  white-space: nowrap;
+}
+
+.table-dokumentasi th:nth-child(4),
+.table-dokumentasi td:nth-child(4) {
+  white-space: nowrap;
+}
+
+.form-hint {
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 12px;
+    font-size: 0.65em;
+    color: #6b7280;
+}

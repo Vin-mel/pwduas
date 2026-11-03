@@ -33,7 +33,7 @@ body {
   left: 0;
   right: 0;
   z-index: 999999;
-  font-family: "Popins", sans-serif;
+  font-family: "Playwrite NZ Basic", sans-serif;
   transition: 0.4s;
   border-bottom: 1px solid transparent;
 }
@@ -52,7 +52,7 @@ body {
   font-weight: 700;
   color: #fff;
   font-style: italic;
-  font-family: "Poppins", sans-serif;
+  font-family: "Playwrite NZ Basic", sans-serif;
 }
 .navbar .navbar-logo span {
   color: var(--primary);
@@ -91,6 +91,7 @@ body {
 
 .hero {
   min-height: 100vh;
+  font-family: "Playwrite NZ Basic", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1196,10 +1197,50 @@ body {
   font-family: "Poppins", sans-serif;
   color: #194d5a;
   max-width: 500px;
-  font-size: 1.9rem;
+  font-size: 1.1rem;
   word-break: break-word;
   overflow-wrap: break-word;
 }
+
+.pendeta-slider{
+  position: relative;
+  min-height: 24rem;
+}
+
+.pendeta-slide{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.pendeta-slide.aktif{
+  display: flex;
+  opacity: 1;
+}
+
+.pendeta-dots{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.pendeta-dots .dot{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #d1e3e7;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pendeta-dots .dot.aktif{
+  background-color: #194d5a;
+}
+
 
 /* Permohonan Doa */
 #permohonan {

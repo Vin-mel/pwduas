@@ -13,6 +13,7 @@ $error = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $nama_pendeta = trim($_POST['nama_pendeta'] ?? '');
+  $jabatan = trim($_POST['jabatan'] ?? 'Pendeta');
   $biodata = trim($_POST['biodata'] ?? '');
 
     if ($nama_pendeta === '' || $biodata===''){
@@ -45,12 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $folder_tujuan = $folder_upload . $nama_file;
 
         if (move_uploaded_file($tmp_name, $folder_tujuan)) {
-            $stmt = mysqli_prepare($conn, "INSERT INTO tb_pendeta (foto_pendeta,nama_pendeta,biodata, id_user) VALUES (?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmt, "sssi", $nama_file,$nama_pendeta,$biodata, $id_user);
+            $stmt = mysqli_prepare($conn, "INSERT INTO tb_pendeta (foto_pendeta, nama_pendeta, jabatan, biodata, id_user) VALUES (?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssssi", $nama_file, $nama_pendeta, $jabatan, $biodata, $id_user);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
-            header("Location: index.php");
+            header("Location: index.php?status=tambah_sukses");
             exit;
         } else {
             $error = "Gagal upload gambar.";
@@ -81,8 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form action="tambah.php" method="POST" enctype="multipart/form-data" class="form-admin">
                 <label>Pilih Gambar:</label><br>
                 <input type="file" name="gambar" accept="image/*" required><br><br>
+
                 <label>Nama Pendeta:</label><br>
                 <input type="text" name="nama_pendeta" value="<?= htmlspecialchars($_POST['nama_pendeta']?? '')?>" required><br><br>
+
+                <label>Jabatan:</label><br>
+                <select name="jabatan" required>
+                    <option value="Pendeta">Pendeta</option>
+                    <option value="Hamba Tuhan">Hamba Tuhan</option>
+                    <option value="Majelis">Majelis</option>
+                </select><br><br>
+
                 <label>Biodata:</label><br>
                 <textarea name="biodata" rows="6" required><?= htmlspecialchars($_POST['biodata']?? '')?> </textarea><br><br>
                 <div class="form-actions">

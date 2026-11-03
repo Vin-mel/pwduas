@@ -147,3 +147,29 @@ slider.addEventListener("mousemove", (e) => {
 //         });
 //     }
 // });
+
+// Rotasi otomatis untuk slider pendeta
+document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.pendeta-slide');
+    const dots = document.querySelectorAll('.pendeta-dots .dot');
+    let current = 0;
+    const interval = 5000; 
+    if (slides.length > 1) {
+      function tampilkanSlide(index){
+        slides.forEach(s => s.classList.remove('aktif'));
+        dots.forEach(d => d.classList.remove('aktif'));
+        slides[index].classList.add('aktif');
+        dots[index].classList.add('aktif');
+        current=index;
+      }
+      setInterval(function(){
+        let next = (current + 1) % slides.length;
+        tampilkanSlide(next);
+      }, interval);
+      dots.forEach(dot => {
+        dot.addEventListener('click', function(){
+          tampilkanSlide(parseInt(this.dataset.index));
+        });
+      });
+    }
+});

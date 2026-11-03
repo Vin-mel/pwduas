@@ -37,6 +37,7 @@ include "../../koneksi.php";
           <th>ID</th>
           <th>Foto</th>
           <th>Nama</th>
+          <th>Jabatan</th>
           <th>Biodata</th>
           <th>Aksi</th>
         </tr>
@@ -50,6 +51,7 @@ include "../../koneksi.php";
                     <td><?= htmlspecialchars($row['id_pendeta']); ?></td>
                     <td><img src="../img/<?= htmlspecialchars($row['foto_pendeta']); ?>" width="80"></td>
                     <td><?= htmlspecialchars($row['nama_pendeta']); ?></td>
+                    <td><?= htmlspecialchars($row['jabatan'] ?? 'Pendeta'); ?></td>
                     <td><?= htmlspecialchars($row['biodata']); ?></td>
                     <td>
                       <a href="ubah.php?id=<?= $row['id_pendeta']; ?>" class="btn-edit">Edit</a>
@@ -64,7 +66,7 @@ include "../../koneksi.php";
         } else {
             ?>
             <tr>
-                <td colspan="5" style="text-align:center;">Belum ada Pendeta.</td>
+                <td colspan="6" style="text-align:center;">Belum ada Pendeta.</td>
             </tr>
             <?php
         }

@@ -109,9 +109,11 @@ $daftarAdmin = mysqli_query($conn, "SELECT id_user, username FROM tb_user ORDER 
 
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required minlength="6">
+                <small class="form-hint">minimal 6 karakter</small>
 
                 <label for="konfirmasi">Konfirmasi Password</label>
                 <input type="password" name="konfirmasi" id="konfirmasi" required minlength="6">
+                <small class="form-hint">Ulangi Password yang Sama</small>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-simpan">Tambah Admin</button>
